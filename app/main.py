@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import matchmaking_worker
 from app.database import engine
 from app.models import Base
-from app.routers import friends, matchmaking, users
+from app.routers import friends, matchmaking, users, scores
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 
@@ -49,7 +49,7 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(friends.router)
 app.include_router(matchmaking.router)
-
+app.include_router(scores.router)
 
 @app.get("/health")
 async def health():

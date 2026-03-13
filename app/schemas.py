@@ -98,3 +98,24 @@ class MatchmakingEnqueue(BaseModel):
     user_id: str
     quicdial_id: str
     payload: dict = {}
+
+# ---------------------------------------------------------------------------
+# Scores & Leaderboards
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Scores & Leaderboards
+# ---------------------------------------------------------------------------
+
+class ScoreCreate(BaseModel):
+    quicdial_id: str
+    game: str
+    score: int
+
+class ScoreResponse(BaseModel):
+    id: str
+    quicdial_id: str
+    game: str
+    score: int
+    created_at: datetime
+
+    model_config = {"from_attributes": True}

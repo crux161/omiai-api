@@ -9,6 +9,7 @@ from sqlalchemy import (
     String,
     UniqueConstraint,
     func,
+    Integer,
 )
 from sqlalchemy.orm import DeclarativeBase, relationship
 
@@ -23,6 +24,17 @@ def _new_id():
 
 class Base(DeclarativeBase):
     pass
+
+
+class HighScore(Base):
+    __tablename__ = "high_scores"
+
+    id = Column(String(36), primary_key=True, default=_new_id)
+    quicdial_id = Column(String(64), nullable=False, index=True)
+    game = Column(String(50), nullable=False, index=True)
+    score = Column(Integer, nullable=False)
+
+    created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
 
 class User(Base):
